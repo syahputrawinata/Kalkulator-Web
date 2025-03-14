@@ -1,0 +1,125 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+body {
+  --bg-color: #edf1f4;
+  --outer-shadow: 15px 15px 20px rgba(0, 0, 0, 0.1), -15px -15px 20px #fff;
+  --inner-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.1),
+    inset -5px -5px 20px #fff;
+  --border: 2px solid #edf1f4;
+  --text-color: #665;
+  --switch-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5), -2px -2px 5px #fff;
+  --indicator-color: #cecece;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+}
+
+body.dark {
+  --bg-color: #242424;
+  --outer-shadow: 5px 5px 20px #000, -5px -5px 20px #464646;
+  --inner-shadow: inset 2px 2px 20px #000, inset -2px -2px 20px #464646;
+  --border: 2px solid #272626;
+  --switch-box-shadow: 2px 2px 5px #000, -2px -2px 5px #464646;
+  --indicator-color: #222222;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+label {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  content: "";
+  height: 30px;
+  width: 80px;
+  box-shadow: var(--inner-shadow);
+  border: var(--border);
+  border-radius: 20px;
+}
+
+label::after {
+  content: "";
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  top: 50%;
+  transform: translate(5px, -50%);
+  border-radius: 50%;
+  box-shadow: var(--switch-box-shadow);
+  background: var(--indicator-color);
+  transition: 0.5s;
+}
+
+input[type="checkbox"]:checked ~ label::after {
+  transform: translate(calc(80px - 35px - 10px), -50%);
+}
+
+.calculator {
+  width: 350px;
+  padding: 1rem;
+  border-radius: 2rem;
+  box-shadow: var(--outer-shadow);
+}
+
+.calculator .buttons {
+  display: grid;
+}
+
+.calculator .buttons #value {
+  grid-column: span 4;
+  user-select: none;
+  overflow: none;
+  width: 100%;
+  text-align: end;
+  color: #5166e5;
+  height: 100px;
+  line-height: 100px;
+  box-shadow: var(--inner-shadow);
+  margin-bottom: 1.2rem;
+  padding: 0 20px;
+  font-size: 2em;
+  font-weight: 900;
+  border-radius: 2rem;
+}
+
+.calculator .buttons span {
+  padding: 10px;
+  margin: 10px;
+  box-shadow: var(--outer-shadow);
+  cursor: pointer;
+  user-select: none;
+  min-width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2em;
+  color: var(--text-color);
+  font-weight: bolder;
+  border: var(--border);
+  border-radius: 1rem;
+}
+
+.calculator .buttons span:active {
+  box-shadow: var(--inner-shadow);
+  color: rgb(167, 89, 89);
+}
+
+.calculator .buttons span#clear {
+  grid-column: span 2;
+}
+
+.calculator .buttons span#equal {
+  grid-row: span 2;
+}
